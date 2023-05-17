@@ -1,0 +1,5 @@
+package com.sloon.employee.models;
+
+public class Employee {
+
+}

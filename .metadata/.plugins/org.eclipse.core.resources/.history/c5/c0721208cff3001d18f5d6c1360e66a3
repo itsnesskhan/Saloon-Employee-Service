@@ -1,0 +1,5 @@
+package com.sloon.employee.repo;
+
+public interface AddressRepository {
+
+}

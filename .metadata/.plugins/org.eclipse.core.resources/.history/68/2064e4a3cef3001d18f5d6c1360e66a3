@@ -1,0 +1,5 @@
+package com.sloon.employee.payloads;
+
+public class CommonResponse {
+
+}

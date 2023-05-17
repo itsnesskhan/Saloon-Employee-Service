@@ -1,0 +1,54 @@
+package com.sloon.employee.services.impl;
+
+import java.time.LocalDate;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
+
+import com.sloon.employee.models.Employee;
+import com.sloon.employee.models.Role;
+import com.sloon.employee.payloads.CommonResponse;
+import com.sloon.employee.payloads.EmployeeDTO;
+import com.sloon.employee.repo.EmployeeRepository;
+import com.sloon.employee.services.EmployeeService;
+
+@Service
+public class EmployeeServiceImpl implements EmployeeService {
+
+	private EmployeeRepository employeeRepository;
+
+	private ModelMapper modelMapper;
+
+	@SuppressWarnings("null")
+	@Override
+	public CommonResponse SaveEmployee(EmployeeDTO employeeDTO) {
+		Employee employee = employeeRepository.findByEmail(employeeDTO.getEmail())
+				.orElseThrow(() -> new RuntimeException("Employee Already Exist with email"));
+		
+		if (employee == null) {
+			employee = modelMapper.map(employeeDTO, employee.getClass());
+			employee = employeeRepository.save(employee);
+		    Role role = new Role(101, "EMPLOYEE");
+		    employee.setRole(role);
+		}
+		employee = modelMapper.map(employeeDTO, Employee.class);
+		employee = employeeRepository.save(employee);
+		
+		employeeDTO = modelMapper.map(employee, employeeDTO.getClass());
+		
+		return CommonResponse.builder().data(employee).timeStamp(LocalDate.now()).status(true).build();
+	}
+
+	@Override
+	public CommonResponse getAllEmployees() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CommonResponse getEmployeeById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
