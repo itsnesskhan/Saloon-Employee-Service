@@ -1,5 +1,0 @@
-package com.sloon.employee.services.impl;
-
-public interface EmployeeService {
-
-}

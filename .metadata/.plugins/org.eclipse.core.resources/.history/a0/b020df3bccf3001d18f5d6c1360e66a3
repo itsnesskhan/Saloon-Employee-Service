@@ -1,9 +1,0 @@
-package com.sloon.employee.models;
-
-public class Role {
-
-	private Integer rid;
-
-	private String name;
-	
-}

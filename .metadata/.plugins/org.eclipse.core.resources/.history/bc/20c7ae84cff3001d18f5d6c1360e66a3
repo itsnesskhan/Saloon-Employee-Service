@@ -1,7 +1,0 @@
-package com.sloon.employee.services.impl;
-
-import com.sloon.employee.services.EmployeeService;
-
-public class EmployeeServiceImpl implements EmployeeService {
-
-}

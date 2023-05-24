@@ -16,30 +16,30 @@ import com.sloon.customer.service.CustomerService;
 
 @RestController
 @RequestMapping("/api/v1/customer")
-public class EmployeeController {
+public class CustomerController {
 
 	@Autowired
 	private CustomerService customerService;
 
-	public EmployeeController(CustomerService customerService) {
+	public CustomerController(CustomerService customerService) {
 		super();
 		this.customerService = customerService;
 	}
 
 	@PostMapping("/save")
-	ResponseEntity<CommonResponse> createEmployee(@RequestBody CustomerDTO customerDTO) {
+	ResponseEntity<CommonResponse> createCustomer(@RequestBody CustomerDTO customerDTO) {
 		CommonResponse apiResponse = customerService.addCustomer(customerDTO);
 		return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
 	}
 
 	@GetMapping("/get-all")
-	ResponseEntity<CommonResponse> getAllEmployee() {
+	ResponseEntity<CommonResponse> getAllCustomer() {
 		CommonResponse apiResponse = customerService.getAllCustomes();
 		return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
 	}
 
 	@GetMapping("/get/{id}")
-	ResponseEntity<CommonResponse> getEmployeeById(@PathVariable Integer id) {
+	ResponseEntity<CommonResponse> getCustomerById(@PathVariable Integer id) {
 		CommonResponse apiResponse = customerService.getCustomerById(id);
 		return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
 	}
